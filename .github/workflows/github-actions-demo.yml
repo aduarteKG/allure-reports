@@ -52,13 +52,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-history
-
-      - name: Load test report history to main repo
-        uses: actions/checkout@v4
-        with:
-          repository: aduarteKG/allure-reports-main
-          path: ./gh-pages
-          token: ${{ secrets.ALLURE_TOKEN }}
       
       - name: Test here and host elsewhere
         uses: simple-elf/allure-report-action@master
@@ -72,10 +65,10 @@ jobs:
           github_repo: aduarteKG/allure-reports-main
           github_repo_owner: aduarteKG
         
-      - name: Publish test report to main repo
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Deploy report to Github Pages
         if: always()
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: allure-history
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.ALLURE_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history
