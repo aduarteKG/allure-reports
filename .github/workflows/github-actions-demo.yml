@@ -48,5 +48,6 @@ jobs:
           allure_history: allure-history
           github_repo: allure-reports-main
           github_repo_owner: aduarteKG
-        
+        env:
+          GITHUB_TOKEN: ${{ secrets.ALLURE_TOKEN }}
      
