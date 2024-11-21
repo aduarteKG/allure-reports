@@ -57,14 +57,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: aduarteKG/allure-reports-main
-          path: ./allure-reports-main
+          path: ./gh-pages
           token: ${{ secrets.ALLURE_TOKEN }}
       
       - name: Build test report to main repo
         uses: simple-elf/allure-report-action@v1.10
         if: always()
         with:
-          gh_pages: main
+          gh_pages: gh-pages
           allure_history: allure-history
           allure_results: allure-results
         
@@ -73,5 +73,5 @@ jobs:
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: main
+          publish_branch: gh-pages
           publish_dir: allure-history
