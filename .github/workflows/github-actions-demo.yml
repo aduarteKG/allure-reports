@@ -42,9 +42,34 @@ jobs:
         if: always()
         with:
           gh_pages: gh-pages
+          allure_history: allure-history
           allure_results: allure-results
       
       - name: Publish test report
+        uses: peaceiris/actions-gh-pages@v4
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
+
+      - name: Load test report history to main repo
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: allure-reports-main/gh-pages
+          path: gh-pages
+      
+      - name: Build test report to main repo
+        uses: simple-elf/allure-report-action@v1.10
+        if: always()
+        with:
+          gh_pages: gh-pages
+          allure_history: allure-history
+          allure_results: allure-results
+        
+      - name: Publish test report to main repo
         uses: peaceiris/actions-gh-pages@v4
         if: always()
         with:
