@@ -59,7 +59,7 @@ jobs:
         uses: mgrybyk-org/git-commit-pull-push-action@v1
         if: always()
         with:
-          repository: allure-reports
+          repository: gh-pages
           branch: gh-pages
           pull_args: --rebase -X ours
 
