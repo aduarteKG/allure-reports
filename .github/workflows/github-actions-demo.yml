@@ -2,8 +2,10 @@ name: Generate Allure Report
 
 on:
   pull_request:
-    types: [opened, synchronize]
-
+  push:
+    branches: ['main']
+  workflow_dispatch:
+    
 jobs:
   build:
     runs-on: ubuntu-latest
