@@ -5,7 +5,7 @@ on:
   push:
     branches: ['main']
   workflow_dispatch:
-    
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -58,7 +58,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: allure-results
+          publish_dir: allure-history
           publish_branch: gh-pages
           destination_dir: allure-reports/${{ github.event.pull_request.number }}
 
