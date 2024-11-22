@@ -45,22 +45,22 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-      - name: Build test report
-        uses: simple-elf/allure-report-action@v1.10
+      - name: Allure Report Action
+        uses: mgrybyk-org/allure-report-branch-js-action@v1
+        if: always()
+        continue-on-error: true
+        id: allure
+        with:
+          report_id: 'pr-test'
+          gh_pages: 'gh-pages'
+          report_dir: 'allure-results'
+    
+      - name: Git Commit and Push Action
+        uses: mgrybyk-org/git-commit-pull-push-action@v1
         if: always()
         with:
-          gh_pages: gh-pages
-          allure_report: allure-report
-          allure_history: allure-history
-          allure_results: allure-results
-          keep_reports: 1
-
-      - name: Deploy Allure report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: allure-report
-          publish_branch: gh-pages
-          destination_dir: allure-reports/${{ github.event.pull_request.number }}
+          repository: allure-reports
+          branch: gh-pages
+          pull_args: --rebase -X ours
 
      
