@@ -46,7 +46,7 @@ jobs:
           path: gh-pages
 
       - name: Allure Report Action
-        uses: mgrybyk-org/allure-report-branch-js-action@v1
+        uses: mgrybyk-org/allure-report-branch-js-action@v1.4.5
         if: always()
         continue-on-error: true
         id: allure
