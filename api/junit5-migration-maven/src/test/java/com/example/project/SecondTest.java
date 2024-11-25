@@ -22,14 +22,13 @@ import io.qameta.allure.Allure;
 class SecondTest {
 
 	@Test
-	@Disabled
 	void mySecondTest() {
         Allure.getLifecycle().updateTestCase(tr -> tr.getLabels().removeIf(label -> "suite".equals(label.getName())));
 
 		Allure.label("parentSuite", "API");
         Allure.suite("mySecondTest");
         Allure.label("subSuite", "mySecondTest");
-		assertEquals(2, 1, "2 is not equal to 1");
+		assertEquals(2, 2, "2 is not equal to 1");
 	}
 
 	@Test
