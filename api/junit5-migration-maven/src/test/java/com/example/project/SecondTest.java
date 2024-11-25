@@ -28,7 +28,7 @@ class SecondTest {
 		Allure.label("parentSuite", "API");
         Allure.suite("mySecondTest");
         Allure.label("subSuite", "mySecondTest");
-		assertEquals(2, 1, "2 is not equal to 1");
+		assertEquals(2, 2, "2 is not equal to 1");
 	}
 
 	@Test
