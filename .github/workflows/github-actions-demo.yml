@@ -54,7 +54,7 @@ jobs:
           report_id: 'pr-test'
           gh_pages: 'gh-pages'
           report_dir: 'allure-results'
-          max_reports: 1
+          max_reports: 9
 
       - name: Git Commit and Push Action
         uses: mgrybyk-org/git-commit-pull-push-action@v1
