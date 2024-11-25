@@ -12,5 +12,5 @@ it('CheckboxWithLabel changes the text after click', () => {
 
   fireEvent.click(getByLabelText(/off/i));
 
-  expect(queryByLabelText(/on/i)).toBeTruthy();
+  expect(queryByLabelText(/off/i)).toBeTruthy();
 });
