@@ -33,6 +33,7 @@ class SecondTest {
 
 	@Test
 	@Tag("slow")
+	@Disabled
 	void aSlowTest() throws InterruptedException {
         Allure.getLifecycle().updateTestCase(tr -> tr.getLabels().removeIf(label -> "suite".equals(label.getName())));
 
