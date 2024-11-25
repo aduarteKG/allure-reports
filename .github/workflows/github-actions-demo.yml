@@ -54,7 +54,6 @@ jobs:
           report_id: 'pr-test'
           gh_pages: 'gh-pages'
           report_dir: 'allure-results'
-          branch_cleanup_enabled: true
           max_reports: 1
 
       - name: Git Commit and Push Action
