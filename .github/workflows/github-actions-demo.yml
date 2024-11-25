@@ -46,7 +46,7 @@ jobs:
           path: gh-pages
 
       - name: Allure Report Action
-        uses: mgrybyk-org/allure-report-branch-js-action@v1
+        uses: mgrybyk-org/allure-report-branch-js-action@v1.4.5
         if: always()
         continue-on-error: true
         id: allure
@@ -54,8 +54,9 @@ jobs:
           report_id: 'pr-test'
           gh_pages: 'gh-pages'
           report_dir: 'allure-results'
+          branch_cleanup_enabled: true
           max_reports: 1
-    
+
       - name: Git Commit and Push Action
         uses: mgrybyk-org/git-commit-pull-push-action@v1
         if: always()
@@ -70,7 +71,7 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-            ${{ steps.allure.outputs.test_result_icon }} [Allure Report](${{ steps.allure.outputs.report_url }}) | New [History](${{ steps.allure.outputs.report_history_url }})
+            ${{ steps.allure.outputs.test_result_icon }} [Allure Report](${{ steps.allure.outputs.report_url }})
           comment_tag: allure_report
           mode: recreate
 
