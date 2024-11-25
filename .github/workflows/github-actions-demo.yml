@@ -2,7 +2,9 @@ name: Generate Allure Report
 
 on:
   pull_request:
-    types: [opened, synchronize]
+  push:
+    branches: ['main']
+  workflow_dispatch:
 
 jobs:
   build:
@@ -43,21 +45,32 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-      - name: Build test report
-        uses: simple-elf/allure-report-action@v1.10
+      - name: Allure Report Action
+        uses: mgrybyk-org/allure-report-branch-js-action@v1
+        if: always()
+        continue-on-error: true
+        id: allure
+        with:
+          report_id: 'pr-test'
+          gh_pages: 'gh-pages'
+          report_dir: 'allure-results'
+    
+      - name: Git Commit and Push Action
+        uses: mgrybyk-org/git-commit-pull-push-action@v1
         if: always()
         with:
-          gh_pages: gh-pages
-          allure_history: allure-history
-          allure_results: allure-results
-          keep_reports: 1
-
-      - name: Deploy Allure report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+          repository: gh-pages
+          branch: gh-pages
+          pull_args: --rebase -X ours
+      
+      - name: Comment PR with Allure Report link
+        if: ${{ always() && github.event_name == 'pull_request' && steps.allure.outputs.report_url }}
+        continue-on-error: true
+        uses: thollander/actions-comment-pull-request@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: allure-results
-          publish_branch: gh-pages
-          destination_dir: allure-reports/${{ github.event.pull_request.number }}
+          message: |
+            ${{ steps.allure.outputs.test_result_icon }} [Allure Report](${{ steps.allure.outputs.report_url }}) | New [History](${{ steps.allure.outputs.report_history_url }})
+          comment_tag: allure_report
+          mode: recreate
 
      
