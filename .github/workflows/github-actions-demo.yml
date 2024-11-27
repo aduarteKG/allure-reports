@@ -36,7 +36,7 @@ jobs:
           
       - name: Run Java tests
         working-directory: ./api/junit5-migration-maven
-        run: allurectl ./mvnw verify
+        run: allurectl watch -- ./mvnw verify
       
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -49,6 +49,6 @@ jobs:
 
       - name: Run Jest tests
         working-directory: ./ui/react-testing-library
-        run: allurectl npm test
+        run: allurectl watch -- npm test
 
     
