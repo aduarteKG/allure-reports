@@ -49,7 +49,7 @@ jobs:
 
       - name: Run Jest tests
         working-directory: ./ui/react-testing-library
-        run: (allurectl watch -- npm test)
+        run: allurectl watch -- npm test
            echo "ALLURE_JOB_RUN_URL=$ALLURE_JOB_RUN_URL" >> $GITHUB_ENV
            
           
