@@ -50,5 +50,12 @@ jobs:
       - name: Run Jest tests
         working-directory: ./ui/react-testing-library
         run: allurectl watch -- npm test
+          echo "ALLURE_JOB_RUN_URL=$ALLURE_JOB_RUN_URL" >> $GITHUB_ENV
 
+      - name: Post Report URL to PR
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: "🎉 Allure Report is ready: [View Report](${{ env.ALLURE_JOB_RUN_URL }})"
     
