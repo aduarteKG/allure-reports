@@ -50,7 +50,7 @@ jobs:
       - name: Run Jest tests
         working-directory: ./ui/react-testing-library
         run: 
-          REPORT_URL=$(allurectl watch -- npm test | grep ALLURE_)
+          echo "REPORT_URL=$(allurectl watch -- npm test | grep ALLURE_JOB_RUN_URL)"
           echo "ALLURE_JOB_RUN_URL=$REPORT_URL" >> $GITHUB_ENV
            
       - name: Post Report URL to PR
