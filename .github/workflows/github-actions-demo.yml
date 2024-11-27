@@ -18,6 +18,7 @@ env:
   ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
   ALLURE_RESULTS: allure-results
   ALLURE_LAUNCH_NAME: ${{ github.head_ref || github.ref_name }} 
+  ALLURE_LAUNCH_TAGS: ${{ github.run_number }}, ${{ github.ref_name }}, demo
   
 jobs:
   build:
