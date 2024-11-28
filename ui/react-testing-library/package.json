@@ -22,7 +22,7 @@
   "jest": {
     "testEnvironment": "allure-jest/jsdom",
     "testEnvironmentOptions": {
-      "resultsDir": "allure-results"
+      "resultsDir": "../../allure-results"
     }
   }
 }
