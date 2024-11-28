@@ -2,10 +2,22 @@ name: Generate Allure Report
 
 on:
   pull_request:
-  push:
     branches: ['main']
   workflow_dispatch:
+    inputs:
+      ALLURE_JOB_RUN_ID:
+        description: ALLURE_JOB_RUN_ID service parameter. Leave blank
+      ALLURE_USERNAME:
+        description: ALLURE_USERNAME service parameter. Leave blank
 
+env:
+  ALLURE_ENDPOINT: https://reportstest.testops.cloud/
+  ALLURE_PROJECT_ID: 1
+  ALLURE_TOKEN: ${{ secrets.ALLURE_TESTOPS_TOKEN }}
+  ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
+  ALLURE_RESULTS: ../../allure-results
+  ALLURE_LAUNCH_TAGS: ${{ github.repository }}, branch-${{ github.head_ref }}, pr-${{ github.event.number }}
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,10 +31,13 @@ jobs:
         with:
             distribution: zulu
             java-version: '17'
+            
+      - name: Install allurectl
+        uses: allure-framework/setup-allurectl@v1
           
       - name: Run Java tests
         working-directory: ./api/junit5-migration-maven
-        run: ./mvnw verify
+        run: allurectl watch -- ./mvnw verify
       
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -35,43 +50,14 @@ jobs:
 
       - name: Run Jest tests
         working-directory: ./ui/react-testing-library
-        run: npm test
-
-      - name: Load test report history
-        uses: actions/checkout@v4
-        if: always()
-        continue-on-error: true
+        run: 
+          echo "REPORT_URL=$(allurectl watch -- npm test | grep ALLURE_JOB_RUN_URL)"
+          echo "ALLURE_JOB_RUN_URL=$REPORT_URL" >> $GITHUB_ENV
+           
+      - name: Post Report URL to PR
+        uses: peter-evans/create-or-update-comment@v3
         with:
-          ref: gh-pages
-          path: gh-pages
-
-      - name: Allure Report Action
-        uses: mgrybyk-org/allure-report-branch-js-action@v1.4.5
-        if: always()
-        continue-on-error: true
-        id: allure
-        with:
-          report_id: 'pr-test'
-          gh_pages: 'gh-pages'
-          report_dir: 'allure-results'
-          max_reports: 1
-
-      - name: Git Commit and Push Action
-        uses: mgrybyk-org/git-commit-pull-push-action@v1
-        if: always()
-        with:
-          repository: gh-pages
-          branch: gh-pages
-          pull_args: --rebase -X ours
-      
-      - name: Comment PR with Allure Report link
-        if: ${{ always() && github.event_name == 'pull_request' && steps.allure.outputs.report_url }}
-        continue-on-error: true
-        uses: thollander/actions-comment-pull-request@v2
-        with:
-          message: |
-            ${{ steps.allure.outputs.test_result_icon }} [Allure Report](${{ steps.allure.outputs.report_url }})
-          comment_tag: allure_report
-          mode: recreate
-
-     
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: "🎉 Allure Report is ready: [View Report](${{ env.ALLURE_JOB_RUN_URL }})"
+    
