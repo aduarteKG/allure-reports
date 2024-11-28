@@ -16,8 +16,7 @@ env:
   ALLURE_TOKEN: ${{ secrets.ALLURE_TESTOPS_TOKEN }}
   ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
   ALLURE_RESULTS: ../../allure-results
-  ALLURE_LAUNCH_NAME: ${{ github.head_ref || github.ref_name }} 
-  ALLURE_LAUNCH_TAGS: ${{ github.run_number }}, ${{ github.ref_name }}, demo
+  ALLURE_LAUNCH_TAGS: ${{ github.repository }}, branch-${{ github.head_ref }}, pr-${{ github.event.number }}
   
 jobs:
   build:
