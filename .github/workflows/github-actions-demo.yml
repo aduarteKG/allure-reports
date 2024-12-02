@@ -38,6 +38,10 @@ jobs:
       - name: Run Java tests
         working-directory: ./api/junit5-migration-maven
         run: allurectl watch -- ./mvnw verify
+
+      - name: Run Cumber tests
+        working-directory: ./api/playwright-java-cucumber
+        run: allurectl watch -- mvn verify
       
       - name: Set up Node.js
         uses: actions/setup-node@v3
