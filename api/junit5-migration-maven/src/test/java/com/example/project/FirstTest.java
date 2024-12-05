@@ -45,4 +45,17 @@ class FirstTest {
 		assertEquals(0, calculator.substract(1, 1), "1 - 1 should equal 0");
 		
 	}
+
+	@Test
+	@DisplayName("Multiply")
+	void multiply(TestInfo testInfo) {
+		// https://github.com/allure-framework/allure-java/issues/1028
+		Allure.getLifecycle().updateTestCase(tr -> tr.getLabels().removeIf(label -> "suite".equals(label.getName())));
+
+        Allure.label("parentSuite", "API");
+
+		Calculator calculator = new Calculator();
+		assertEquals(1, calculator.multiply(1, 1), "1 * 1 should equal 1");
+		
+	}
 }
