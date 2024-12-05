@@ -38,10 +38,6 @@ jobs:
       - name: Run Java tests
         working-directory: ./api/junit5-migration-maven
         run: allurectl watch -- ./mvnw verify
-
-      - name: Run Cumber tests
-        working-directory: ./api/playwright-java-cucumber
-        run: allurectl watch -- mvn verify
       
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -57,6 +53,16 @@ jobs:
         run: 
           echo "REPORT_URL=$(allurectl watch -- npm test | grep ALLURE_JOB_RUN_URL)"
           echo "ALLURE_JOB_RUN_URL=$REPORT_URL" >> $GITHUB_ENV
+
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Cumber tests
+        working-directory: ./api/playwright-java-cucumber
+        run: allurectl watch -- mvn verify
            
       - name: Post Report URL to PR
         uses: peter-evans/create-or-update-comment@v3
