@@ -1,0 +1,8 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","1","testThisOtherThing()","API","Thu Dec 05 17:20:05 UTC 2024","passed","Thu Dec 05 17:20:05 UTC 2024","testThisOtherThing","OtherTests","com.example.project.OtherTests","testThisOtherThing"
+"","8","test","API","Thu Dec 05 17:20:05 UTC 2024","passed","Thu Dec 05 17:20:05 UTC 2024","test","JUnit4Test","com.example.project.JUnit4Test","test"
+"","34","CheckboxWithLabel changes the text after click","","Thu Dec 05 17:20:41 UTC 2024","passed","Thu Dec 05 17:20:41 UTC 2024","","","",""
+"","1027","aSlowTest()","API","Thu Dec 05 17:20:04 UTC 2024","passed","Thu Dec 05 17:20:05 UTC 2024","aSlowTest","mySecondTest","com.example.project.SecondTest","aSlowTest"
+"","3","testThisThing()","API","Thu Dec 05 17:20:05 UTC 2024","passed","Thu Dec 05 17:20:05 UTC 2024","testThisThing","OtherTests","com.example.project.OtherTests","testThisThing"
+"","10","My 1st JUnit 5 test! 😎","API","Thu Dec 05 17:20:05 UTC 2024","passed","Thu Dec 05 17:20:05 UTC 2024","","","com.example.project.FirstTest","myFirstTest"
+"","6","mySecondTest()","API","Thu Dec 05 17:20:05 UTC 2024","passed","Thu Dec 05 17:20:05 UTC 2024","mySecondTest","mySecondTest","com.example.project.SecondTest","mySecondTest"
