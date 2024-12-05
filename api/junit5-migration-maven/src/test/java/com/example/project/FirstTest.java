@@ -42,7 +42,7 @@ class FirstTest {
         Allure.label("parentSuite", "API");
 
 		Calculator calculator = new Calculator();
-		assertEquals(2, calculator.substract(1, 1), "1 - 1 should equal 0");
+		assertEquals(0, calculator.substract(1, 1), "1 - 1 should equal 0");
 		
 	}
 }
