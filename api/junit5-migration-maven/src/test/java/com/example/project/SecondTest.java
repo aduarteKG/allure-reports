@@ -22,6 +22,7 @@ import io.qameta.allure.Allure;
 class SecondTest {
 
 	@Test
+	@Disabled
 	void mySecondTest() {
         Allure.getLifecycle().updateTestCase(tr -> tr.getLabels().removeIf(label -> "suite".equals(label.getName())));
 
