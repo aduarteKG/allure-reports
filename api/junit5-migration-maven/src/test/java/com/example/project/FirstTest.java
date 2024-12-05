@@ -21,7 +21,7 @@ import io.qameta.allure.Allure;
 @Tag("fast")
 class FirstTest {
     @Test
-	@DisplayName("My 1st JUnit 5 test! 😎")
+	@DisplayName("My 1st JUnit 5 test!")
 	void myFirstTest(TestInfo testInfo) {
 		// https://github.com/allure-framework/allure-java/issues/1028
 		Allure.getLifecycle().updateTestCase(tr -> tr.getLabels().removeIf(label -> "suite".equals(label.getName())));
@@ -30,6 +30,19 @@ class FirstTest {
 
 		Calculator calculator = new Calculator();
 		assertEquals(2, calculator.add(1, 1), "1 + 1 should equal 2");
-		assertEquals("My 1st JUnit 5 test! 😎", testInfo.getDisplayName(), () -> "TestInfo is injected correctly");
+		assertEquals("My 1st JUnit 5 test!", testInfo.getDisplayName(), () -> "TestInfo is injected correctly");
+	}
+
+	@Test
+	@DisplayName("Substraction")
+	void substraction(TestInfo testInfo) {
+		// https://github.com/allure-framework/allure-java/issues/1028
+		Allure.getLifecycle().updateTestCase(tr -> tr.getLabels().removeIf(label -> "suite".equals(label.getName())));
+
+        Allure.label("parentSuite", "API");
+
+		Calculator calculator = new Calculator();
+		assertEquals(2, calculator.substract(1, 1), "1 - 1 should equal 0");
+		
 	}
 }
