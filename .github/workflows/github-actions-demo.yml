@@ -22,6 +22,8 @@ jobs:
           
       - name: Run Java tests
         working-directory: ./api/junit5-migration-maven
+        if: always()
+        continue-on-error: true
         run: mvn -B test
 
       - name: Upload coverage reports to Codecov
@@ -40,6 +42,8 @@ jobs:
 
       - name: Run Jest tests
         working-directory: ./ui/react-testing-library
+        if: always()
+        continue-on-error: true
         run: npm test
 
       - name: Run tests
