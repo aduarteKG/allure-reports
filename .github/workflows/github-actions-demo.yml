@@ -22,8 +22,8 @@ jobs:
           
       - name: Run Java tests
         working-directory: ./api/junit5-migration-maven
-        run: ./mvnw verify
-      
+        run: mvn -B test
+        
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
