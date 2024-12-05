@@ -23,6 +23,11 @@ jobs:
       - name: Run Java tests
         working-directory: ./api/junit5-migration-maven
         run: mvn -B test
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
         
       - name: Set up Node.js
         uses: actions/setup-node@v3
