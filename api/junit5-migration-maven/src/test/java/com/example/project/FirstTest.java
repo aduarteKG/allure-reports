@@ -56,6 +56,5 @@ class FirstTest {
 
 		Calculator calculator = new Calculator();
 		assertEquals(1, calculator.multiply(1, 1), "1 * 1 should equal 1");
-		
 	}
 }
