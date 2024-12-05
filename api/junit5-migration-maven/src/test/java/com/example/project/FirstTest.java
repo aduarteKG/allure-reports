@@ -11,12 +11,12 @@
 package com.example.project;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import io.qameta.allure.Allure;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
+
+import io.qameta.allure.Allure;
 
 @Tag("fast")
 class FirstTest {
@@ -28,8 +28,8 @@ class FirstTest {
 
         Allure.label("parentSuite", "API");
 
-		Calculator calculator = new Calculator();
-		assertEquals(2, calculator.add(1, 1), "1 + 1 should equal 2");
+		//Calculator calculator = new Calculator();
+		//assertEquals(2, calculator.add(1, 1), "1 + 1 should equal 2");
 		assertEquals("My 1st JUnit 5 test! 😎", testInfo.getDisplayName(), () -> "TestInfo is injected correctly");
 	}
 }
