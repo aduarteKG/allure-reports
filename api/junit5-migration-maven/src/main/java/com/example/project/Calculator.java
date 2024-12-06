@@ -13,7 +13,11 @@ package com.example.project;
 public class Calculator {
 
 	public int add(int a, int b) {
-		return a + b;
+		if(a > b) {
+			return a + b + 1;
+		} else {
+			return a + b;
+		}
 	}
 
 	public int substract(int a, int b) {
