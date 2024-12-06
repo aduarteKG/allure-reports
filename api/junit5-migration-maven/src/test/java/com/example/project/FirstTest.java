@@ -34,6 +34,17 @@ class FirstTest {
 	}
 
 	@Test
+	void aGreaterThanB(TestInfo testInfo) {
+		// https://github.com/allure-framework/allure-java/issues/1028
+		Allure.getLifecycle().updateTestCase(tr -> tr.getLabels().removeIf(label -> "suite".equals(label.getName())));
+
+        Allure.label("parentSuite", "API");
+
+		Calculator calculator = new Calculator();
+		assertEquals(14, calculator.add(12, 1), "12 + 1 should equal 14");	
+	}
+
+	@Test
 	@DisplayName("Substraction")
 	void substraction(TestInfo testInfo) {
 		// https://github.com/allure-framework/allure-java/issues/1028
