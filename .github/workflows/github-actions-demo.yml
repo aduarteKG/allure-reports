@@ -27,6 +27,7 @@ jobs:
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
         with:
+          files: ./api/junit5-migration-maven/target/jacoco.exec
           flags: unittests
           token: ${{ secrets.CODECOV_TOKEN }}
         
@@ -43,6 +44,13 @@ jobs:
         working-directory: ./ui/react-main
         run: npx jest --coverage
 
+      - name: Upload main coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          files: ./ui/react-main/coverage/coverage-final.json
+          flags: ui
+          token: ${{ secrets.CODECOV_TOKEN }}
+
       - name: Install dependencies in react library
         working-directory: ./ui/react-testing-library
         run: npm install
@@ -51,9 +59,10 @@ jobs:
         working-directory: ./ui/react-testing-library
         run: npx jest --coverage
         
-      - name: Upload coverage reports to Codecov
+      - name: Upload testing library coverage reports to Codecov
         uses: codecov/codecov-action@v5
         with:
+          files: ./ui/react-testing-library/coverage/coverage-final.json
           flags: ui
           token: ${{ secrets.CODECOV_TOKEN }}
 
