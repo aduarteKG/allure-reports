@@ -25,11 +25,6 @@ jobs:
         if: always()
         continue-on-error: true
         run: mvn -B test
-
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v5
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
         
       - name: Set up Node.js
         uses: actions/setup-node@v3
