@@ -20,7 +20,7 @@ component_management:
       name: React Testing Library 
       paths:
         - ui/react-testing-library/**
-    - component_id: react-testing-library  
+    - component_id: react-main-library  
       name: React Main 
       paths:
         - ui/react-main/**
