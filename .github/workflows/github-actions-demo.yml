@@ -43,10 +43,9 @@ jobs:
       - name: Run tests in main fe
         working-directory: ./ui/react-main
         run: npx jest --coverage
-
-      - name: Upload main coverage reports to Codecov
-        uses: codecov/codecov-action@v5
+      - uses: codecov/codecov-action@v5
         with:
+          gcov_args: -c
           files: ./ui/react-main/coverage/coverage-final.json
           flags: ui
           token: ${{ secrets.CODECOV_TOKEN }}
@@ -58,10 +57,9 @@ jobs:
       - name: Run tests in react library
         working-directory: ./ui/react-testing-library
         run: npx jest --coverage
-        
-      - name: Upload testing library coverage reports to Codecov
-        uses: codecov/codecov-action@v5
+      - uses: codecov/codecov-action@v5
         with:
+          gcov_args: -c
           files: ./ui/react-testing-library/coverage/coverage-final.json
           flags: ui
           token: ${{ secrets.CODECOV_TOKEN }}
