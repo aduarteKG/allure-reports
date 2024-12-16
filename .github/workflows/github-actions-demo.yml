@@ -24,12 +24,9 @@ jobs:
         working-directory: ./api/junit5-migration-maven
         run: mvn -B test
 
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v5
-        with:
-          files: ./api/junit5-migration-maven/target/jacoco.exec
-          flags: unittests
-          token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Run API tests
+        working-directory: ./api/api
+        run: mvn -B test
         
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -44,13 +41,6 @@ jobs:
         working-directory: ./ui/react-main
         run: npx jest --coverage
 
-      - name: Upload main coverage reports to Codecov
-        uses: codecov/codecov-action@v5
-        with:
-          files: ./ui/react-main/coverage/coverage-final.json
-          flags: ui
-          token: ${{ secrets.CODECOV_TOKEN }}
-
       - name: Install dependencies in react library
         working-directory: ./ui/react-testing-library
         run: npm install
@@ -59,48 +49,9 @@ jobs:
         working-directory: ./ui/react-testing-library
         run: npx jest --coverage
         
-      - name: Upload testing library coverage reports to Codecov
+      - name: Upload fe reports to Codecov
         uses: codecov/codecov-action@v5
         with:
-          files: ./ui/react-testing-library/coverage/coverage-final.json
-          flags: ui
           token: ${{ secrets.CODECOV_TOKEN }}
-
-      - name: Load test report history
-        uses: actions/checkout@v4
-        if: always()
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
-
-      - name: Allure Report Action
-        uses: mgrybyk-org/allure-report-branch-js-action@v1.4.5
-        if: always()
-        continue-on-error: true
-        id: allure
-        with:
-          report_id: 'pr-test'
-          gh_pages: 'gh-pages'
-          report_dir: 'allure-results'
-          max_reports: 1
-
-      - name: Git Commit and Push Action
-        uses: mgrybyk-org/git-commit-pull-push-action@v1
-        if: always()
-        with:
-          repository: gh-pages
-          branch: gh-pages
-          pull_args: --rebase -X ours
-      
-      - name: Comment PR with Allure Report link
-        if: ${{ always() && github.event_name == 'pull_request' && steps.allure.outputs.report_url }}
-        continue-on-error: true
-        uses: thollander/actions-comment-pull-request@v2
-        with:
-          message: |
-            ${{ steps.allure.outputs.test_result_icon }} [Allure Report](${{ steps.allure.outputs.report_url }})
-          comment_tag: allure_report
-          mode: recreate
 
      
