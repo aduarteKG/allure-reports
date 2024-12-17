@@ -11,20 +11,20 @@ component_management:
         target: auto
         branches:
           - "!main"
-    individual_components:
-      - component_id: API 
-        name: API
-        paths:
-          - api/api/**
-      - component_id: E2E 
-        name: E2E
-        paths:
-          - api/hellocucumber/**
-      - component_id: be-unit-tests
-        name: BE Unit Tests 
-        paths:
-          - api/junit5-migration-maven/**
-      - component_id: fe-unit-tests
-        name: FE Unit Tests 
-        paths:
-          - ui/**
+  individual_components:
+    - component_id: API 
+      name: API
+      paths:
+        - api/api/**
+    - component_id: E2E 
+      name: E2E
+      paths:
+        - api/hellocucumber/**
+    - component_id: be-unit-tests
+      name: BE Unit Tests 
+      paths:
+        - api/junit5-migration-maven/**
+    - component_id: fe-unit-tests
+      name: FE Unit Tests 
+      paths:
+        - ui/**
