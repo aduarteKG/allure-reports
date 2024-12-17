@@ -15,15 +15,15 @@ component_management:
     - component_id: e-2-e 
       name: E2E
       paths:
-        - api/hellocucumber/**
+        - backend/hellocucumber/**
     - component_id: be-unit-tests
       name: BE Unit Tests 
       paths:
-        - api/junit5-migration-maven/**
+        - backend/junit5-migration-maven/**
     - component_id: api 
       name: API
       paths:
-        - api/api/**
+        - backend/api/**
     - component_id: fe-unit-tests
       name: FE Unit Tests 
       paths:

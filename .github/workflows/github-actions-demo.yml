@@ -21,11 +21,11 @@ jobs:
             java-version: '17'
           
       - name: Run Java tests
-        working-directory: ./api/junit5-migration-maven
+        working-directory: ./backend/junit5-migration-maven
         run: mvn -B test
 
       - name: Run API tests
-        working-directory: ./api/api
+        working-directory: ./backend/api
         run: mvn -B test
         
       - name: Set up Node.js
@@ -52,7 +52,7 @@ jobs:
       - name: Upload fe reports to Codecov
         uses: codecov/codecov-action@v5
         with:
-          files: ./api/test-report.json
+          files: ./backend/test-report.json
           token: ${{ secrets.CODECOV_TOKEN }}
 
      
