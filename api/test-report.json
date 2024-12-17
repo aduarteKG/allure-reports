@@ -1,20 +1,15 @@
 {
-
-  "coverageThreshold": {
-
     "global": {
       "lines": 20,
-      "instructions": 19,
+      "statements": 19,
       "branches": 15
     },
     "api": {
       "lines": 0,
-      "instructions": 0,
+      "statements": 0,
       "branches": 0
     },
     "e2e": {
       "scenarios": 0
     }
-  }
-
 }
