@@ -8,11 +8,10 @@
  * https://www.eclipse.org/legal/epl-v20.html
  */
 
-package com.example.project;
+package com.example.secondproject;
 
 import org.junit.jupiter.api.Test;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+
 import io.qameta.allure.Allure;
 
 class OtherTests {

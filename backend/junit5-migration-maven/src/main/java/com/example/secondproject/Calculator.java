@@ -8,7 +8,7 @@
  * https://www.eclipse.org/legal/epl-v20.html
  */
 
-package com.example.project;
+package com.example.secondproject;
 
 public class Calculator {
 

@@ -8,15 +8,12 @@
  * https://www.eclipse.org/legal/epl-v20.html
  */
 
-package com.example.project;
+package com.example.secondproject;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+
 import io.qameta.allure.Allure;
 
 class SecondTest {
